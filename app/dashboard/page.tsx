@@ -1,10 +1,13 @@
 import { getUser } from '@/actions/auth/get-user'
 import { signout } from '@/actions/auth/auth'
 import { redirect } from 'next/navigation'
-import { LogOut, User as UserIcon, LayoutDashboard, Settings, Bell } from 'lucide-react'
+import { LogOut, User as UserIcon, LayoutDashboard, Settings, Bell, FileCheck, ClipboardList, Trash2, Eye, Receipt, DoorOpen } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getImageUrl, getInitials } from '@/lib/utils'
+
+import { SectionDivider } from '../components/dashboard/SectionDivider'
+import GroupCheckinPage from './group-checkin/group-checkin'
 
 
 export default async function DashboardPage() {
@@ -75,52 +78,28 @@ export default async function DashboardPage() {
                             ¡Bienvenido, {user.name.split(' ')[0]}!
                         </h2>
                         <p className="mt-1 text-zinc-600 font-medium">
-                            Aquí tienes un resumen de tus actividades y procesos hoteleros.
+                            Aquí tienes todos los procesos que debes completar para tus prácticas hoteleras.
                         </p>
                     </div>
                 </div>
 
-                {/* DASHBOARD GRID */}
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {/* PROFILE CARD */}
-                    <div className="rounded-[24px] border border-zinc-200 bg-white p-6 shadow-sm">
-                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                            <UserIcon size={24} />
-                        </div>
-                        <h3 className="text-lg font-bold">Mi Perfil</h3>
-                        <p className="mt-2 text-sm text-zinc-500">
-                            Gestiona tu información personal y preferencias del sistema.
-                        </p>
-                        <div className="mt-6 border-t border-zinc-100 pt-4">
-                            <div className="flex flex-col gap-1">
-                                <span className="text-xs font-medium text-zinc-400 uppercase">Email</span>
-                                <span className="text-sm font-semibold">{user.email}</span>
-                            </div>
-                        </div>
-                    </div>
+                <SectionDivider
+                    title="Check-In"
+                    icon={DoorOpen}
+                    color="#f97316"
+                    lineColor="#fdba74"
+                />
 
-                    {/* STATUS CARD */}
-                    <div className="rounded-[24px] border border-zinc-200 bg-white p-6 shadow-sm">
-                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#d7eadb] text-[#3f6f4a]">
-                            <LayoutDashboard size={24} />
-                        </div>
-                        <h3 className="text-lg font-bold">Estado Académico</h3>
-                        <p className="mt-2 text-sm text-zinc-500">
-                            Actualmente te encuentras activo en los módulos de hotelería.
-                        </p>
-                        <button className="mt-6 w-full rounded-xl bg-zinc-900 py-2.5 text-sm font-semibold text-white transition hover:bg-zinc-800">
-                            Ver progresos
-                        </button>
-                    </div>
+                {/* Grupo Check-In */}
+                <GroupCheckinPage />
 
-                    {/* PLACEHOLDER CARD */}
-                    <div className="rounded-[24px] border border-dashed border-zinc-300 bg-zinc-50/50 p-6 flex flex-col items-center justify-center text-center">
-                        <div className="mb-3 rounded-full bg-zinc-100 p-3">
-                            <Settings size={24} className="text-zinc-400" />
-                        </div>
-                        <p className="text-sm font-medium text-zinc-500">Más módulos próximamente</p>
-                    </div>
-                </div>
+                <SectionDivider
+                    title="Check-Out"
+                    icon={LogOut}
+                    color="#23D5D5"
+                    lineColor="#00FFFF"
+                />
+
             </main>
         </div>
     )
