@@ -1,13 +1,15 @@
 import { getUser } from '@/actions/auth/get-user'
 import { signout } from '@/actions/auth/auth'
 import { redirect } from 'next/navigation'
-import { LogOut, User as UserIcon, LayoutDashboard, Settings, Bell, FileCheck, ClipboardList, Trash2, Eye, Receipt, DoorOpen } from 'lucide-react'
+import { LogOut, User as UserIcon, LayoutDashboard, Settings, Bell, FileCheck, ClipboardList, Trash2, Eye, Receipt, DoorOpen, CalendarCheck } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getImageUrl, getInitials } from '@/lib/utils'
 
 import { SectionDivider } from '../components/dashboard/SectionDivider'
-import GroupCheckinPage from './group-checkin/group-checkin'
+import GroupCheckinPage from './groups/group-checkin'
+import GroupCheckoutPage from './groups/group-checkout'
+import GroupReservationPage from './groups/group-reservation'
 
 
 export default async function DashboardPage() {
@@ -99,6 +101,20 @@ export default async function DashboardPage() {
                     color="#23D5D5"
                     lineColor="#00FFFF"
                 />
+
+                {/* Grupo Check-Out */}
+                <GroupCheckoutPage />
+
+                <SectionDivider
+                    title="Reservacion"
+                    icon={CalendarCheck}
+                    color="#7623d5ff"
+                    lineColor="#be93e8ff"
+                />
+
+                {/* Grupo Reservacion */}
+                <GroupReservationPage />
+
 
             </main>
         </div>
